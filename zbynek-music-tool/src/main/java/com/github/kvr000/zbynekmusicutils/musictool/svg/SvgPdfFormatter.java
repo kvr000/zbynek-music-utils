@@ -18,7 +18,6 @@
 
 package com.github.kvr000.zbynekmusicutils.musictool.svg;
 
-import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import org.apache.batik.transcoder.Transcoder;
 import org.apache.batik.transcoder.TranscoderException;
 import org.apache.batik.transcoder.TranscoderInput;
@@ -42,7 +41,7 @@ public class SvgPdfFormatter
 	{
 		if (HAS_INKSCAPE) {
 			try (InputStream stream = runProgram(0, input, new String[]{
-				"inkscape", "-o",  "-",  "--export-type", "pdf", "--", input.toString()
+				"inkscape", "-o",  "-",  "--export-type", "pdf", "--pipe"
 			})) {
 				IOUtils.copy(stream, output);
 				output.close();

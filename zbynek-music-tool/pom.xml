@@ -25,6 +25,7 @@
 		<commons-lang3.version>3.4</commons-lang3.version>
 		<commons-io.version>2.11.0</commons-io.version>
 
+		<pdfbox.version>3.0.1</pdfbox.version>
 		<batik.version>1.17</batik.version>
 		<fop-pdf-images.version>2.9</fop-pdf-images.version>
 
@@ -150,6 +151,12 @@
 			<groupId>commons-io</groupId>
 			<artifactId>commons-io</artifactId>
 			<version>${commons-io.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.pdfbox</groupId>
+			<artifactId>pdfbox</artifactId>
+			<version>${pdfbox.version}</version>
 		</dependency>
 
 		<dependency>

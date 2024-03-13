@@ -27,21 +27,13 @@ import lombok.extern.log4j.Log4j2;
 import net.dryuf.base.function.ThrowingCallable;
 import net.dryuf.cmdline.command.AbstractCommand;
 import net.dryuf.cmdline.command.CommandContext;
-import org.apache.batik.transcoder.Transcoder;
-import org.apache.batik.transcoder.TranscoderInput;
-import org.apache.batik.transcoder.TranscoderOutput;
 import org.apache.commons.io.output.ByteArrayOutputStream;
-import org.apache.fop.svg.PDFTranscoder;
 import org.apache.pdfbox.io.MemoryUsageSetting;
 import org.apache.pdfbox.multipdf.PDFMergerUtility;
-import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDDocumentInformation;
-import org.apache.pdfbox.pdmodel.common.PDMetadata;
 
 import javax.inject.Inject;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStream;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.Map;
@@ -100,9 +92,7 @@ public class SvgToPdfCommand extends AbstractCommand
 			options.inputs.stream()
 				.map(input -> CompletableFuture.supplyAsync(ThrowingCallable.sneakySupplier(() -> {
 					ByteArrayOutputStream output = new ByteArrayOutputStream();
-					try (InputStream stream = new FileInputStream(input)) {
-						svgPdfFormatter.transform(stream, output);
-					}
+					svgPdfFormatter.transform(new File(input), output);
 					return output.toInputStream();
 				}), executor))
 				.toList()
@@ -116,6 +106,7 @@ public class SvgToPdfCommand extends AbstractCommand
 		}
 		merger.setDestinationDocumentInformation(metadata);
 		merger.setDestinationFileName(mainOptions.getOutput());
+		merger.setDocumentMergeMode(PDFMergerUtility.DocumentMergeMode.OPTIMIZE_RESOURCES_MODE);
 		merger.mergeDocuments(MemoryUsageSetting.setupMainMemoryOnly());
 
 		return 0;

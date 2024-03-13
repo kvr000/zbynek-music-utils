@@ -3,6 +3,12 @@
 Command line tool to manipulate music files.
 
 
+## Download
+
+- https://github.com/kvr000/zbynek-music-utils/releases/download/master/zbynek-music-tool
+- https://github.com/kvr000/zbynek-music-utils/releases/tag/master
+
+
 ## Usage
 
 ```

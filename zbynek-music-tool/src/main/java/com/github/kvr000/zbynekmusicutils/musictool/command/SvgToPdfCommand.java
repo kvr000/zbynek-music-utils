@@ -163,7 +163,8 @@ public class SvgToPdfCommand extends AbstractCommand
 	{
 		return ImmutableMap.of(
 			"--since time", "filter files since specified time, can be yyyy-MM-ddThh:mm:ss or [N:]N{d|h|m|s}",
-			"--till time", "filter files till specified time exclusive, can be yyyy-MM-ddThh:mm:ss or [N:]N{d|h|m|s}"
+			"--till time", "filter files till specified time exclusive, can be yyyy-MM-ddThh:mm:ss or [N:]N{d|h|m|s}",
+			"--title title", "set PDF file title"
 		);
 	}
 
